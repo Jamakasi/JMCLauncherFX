@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="OptionsWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.9999000000025" prefWidth="526.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jmclauncherfx.OptionsWindowController">
+  <children>
+    <TabPane fx:id="RootTabPane" layoutX="2.0" layoutY="0.0" prefHeight="370.99977792969" prefWidth="522.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab fx:id="tabone" text="Основные настройки текущего клиента">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <Button id="OpenClientFolder" fx:id="ButtonOpenClientFolder" layoutX="53.0" layoutY="81.0" mnemonicParsing="false" onAction="#BrowseClientFolder" prefWidth="416.0" text="Открыть папку текущего клиента" />
+                <Button fx:id="ButtonForceUpdate" layoutX="53.0" layoutY="34.0" mnemonicParsing="false" onAction="#ButtonForseUpdate" prefWidth="416.0" text="Принудительно обновить текущий клиент" />
+                <Button fx:id="ButtonBrowse" layoutX="53.0" layoutY="277.0" mnemonicParsing="false" onAction="#ButtonBrowsePathToInstall" text="Выбор папки для установки" />
+                <RadioButton fx:id="RadioDefault" layoutX="53.0" layoutY="137.0" mnemonicParsing="false" onAction="#RadioDefault" text="Папка по умолчанию" />
+                <RadioButton fx:id="RadioPortable" layoutX="53.0" layoutY="186.0" mnemonicParsing="false" onAction="#RadioPortable" text="Портативный режим" />
+                <RadioButton fx:id="RadioInstall" layoutX="53.0" layoutY="233.0" mnemonicParsing="false" onAction="#RadioInstall" text="Установить в папку" />
+                <Label fx:id="LablePath" layoutX="53.0" layoutY="310.0" text="Установлен в:" />
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab fx:id="tabtwo" text="Настройки java текущего клиента">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <CheckBox fx:id="CheckBoxJavaSetting" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onAction="#CheckBoxJavaSetting" text="Использовать" />
+                <TextField fx:id="EditFieldJavaPath" editable="true" layoutX="14.0" layoutY="84.0" prefWidth="395.0" />
+                <TextField fx:id="EditFieldArg" layoutX="14.0" layoutY="170.0" prefWidth="494.0" text="-Xms768m -Xmx768m" />
+                <Button fx:id="ButtonSelectJava" layoutX="424.0" layoutY="84.0" mnemonicParsing="false" onAction="#ButtonBrowseJavaPath" prefWidth="84.0" text="Выбор java" />
+                <Label layoutX="14.0" layoutY="61.0" text="Обязательное поле! Выбрать необходимый java бинарник" />
+                <Label layoutX="14.0" layoutY="146.0" text="Необязательное поле. Можно указать параметры для создаваемой ява машины" />
+                <Button fx:id="ButtonSaveJavaSetting" layoutX="192.0" layoutY="255.0" mnemonicParsing="false" onAction="#SaveJavaConfig" text="Сохранить настройки" />
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+  </children>
+</AnchorPane>

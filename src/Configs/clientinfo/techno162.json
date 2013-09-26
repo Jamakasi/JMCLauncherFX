@@ -1,0 +1,6 @@
+{
+    "info": "<html><body text=\"#333333\" bgcolor=\"#cccccc\" ><center><p><font size=\"5\">Самый технологичный.</font><br/><small><font color=\"#CC0000\">Версия 1.6.2</font></small></p><p>Надоела допотопная жизнь?<br> Добро пожаловать в век<br> нанотехнологий! Строй, развивайся,<br> создавай невероятные системы и<br> технологии. В мире тебя ждет огромный<br> и технологичный Industrial craft 2 с<br> дополнительными расширениями <br>а также BK3.</p><p><strong>Моды:</strong><div>RedPower 2</div><div>Industrial craft 2</div><div>Forestry</div><div>BuildCraft 3</div><div>Computer craft 1.5.5</div></p><p><strong>Аддоны IC2:</strong><div>Compact Solars</div><div>Gravitation Suite</div><div>Nuclear Control</div><div>Windmills</div><div>Chargepads</div></p></center></body></html>",
+    "RunAsOlderMinecraft": false,
+    "RunMinecraftAsFML16x": true,
+    "DownloadZipList":["bin.zip","assets.zip","config.zip","mods.zip"]
+}

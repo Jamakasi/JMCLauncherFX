@@ -1,0 +1,6 @@
+{
+    "info": "<html><body text=\"#333333\" border bgcolor=\"#cccccc\" ><center><p><font size=\"5\">Самый технологичный.</font><br/><small><font color=\"#CC0000\">Версия 1.4.7</font></small></p><p><strong>Моды:</strong><div>RedPower2</div><div>Industrial craft2</div><div>Forestry</div><div>BuildCraft</div></p></center></body></html>",
+    "RunAsOlderMinecraft": true,
+    "RunMinecraftAsFML16x": false,
+    "DownloadZipList":["bin.zip","content.zip","configs.zip","mods.zip"]
+}

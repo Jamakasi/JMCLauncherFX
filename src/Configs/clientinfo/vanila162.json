@@ -1,0 +1,6 @@
+{
+    "info": "<html><body text=\"#333333\" border bgcolor=\"#cccccc\" ><center><p><font size=\"5\">Класический майнкрафт.</font><br/><small><font color=\"#CC0000\">Версия 1.6.2</font></small></p><p>Ты гриффер и любишь выживать в дикой<br> природе? Этот сервер для тебя! Никаких<br> правил не существует! Объединяйся в<br> банды с другими игроками, стань убийцей<br> или жертвой. В диком мире тебя может<br> найти, напугать, убить или помешать жизни<br> Хиробрин! Будь осторожен и не потревожь<br> его.</p></center></body></html>",
+    "RunAsOlderMinecraft": false,
+    "RunMinecraftAsFML16x": false,
+    "DownloadZipList":["bin.zip","assets.zip"]
+}
