@@ -29,6 +29,7 @@ public class JMCLauncherFX extends Application {
         ConfigLoaderCore cf = new ConfigLoaderCore();
         
         cf.LoadCoreConfig();  //Load core properties 
+        
         /*
          * Check online connect
          */
@@ -39,9 +40,6 @@ public class JMCLauncherFX extends Application {
             //Проверяем обновление и качаем если надо
                     jmc.minecraft.utils.LauncherUpdater.UpdateLauncher();
         }
-        
-        
-        
         
         cf.LoadUserConfig(); //Load user config
         cf.LoadClientConfig(GlobalVar.itemsServers[GlobalVar.CurrentServer]);//Load first info about client

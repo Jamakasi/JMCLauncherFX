@@ -43,10 +43,11 @@ ArrayList<String> params = new ArrayList<String>();
              }
         }else
         {
+            params.add("-Dfml.ignoreInvalidMinecraftCertificates=true");  //Игнорим сертефикаты всегда
              if(GlobalVar.newminecraftisfml){
                 params.add("net.minecraft.launchwrapper.Launch");  
                 params.add("--tweakClass");
-                params.add("cpw.mods.fml.common.launcher.FMLTweaker");
+                params.add("cpw.mods.fml.common.launcher.FMLTweaker"); 
              }else
              {
                 params.add("net.minecraft.client.main.Main"); 

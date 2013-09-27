@@ -9,5 +9,5 @@
         "clientdirnames":["techno147","vanila162","techno162"],
         "AuthUrl":"http://pantheria.ru/MineCraft/auth.php",
         "RegUrl":"http://pantheria.ru/index.php?mode=start",
-        "ClientDownloadRootFolder":"http://pantheria.ru/MineCraft/MinecraftDownload/NewLauncher/"
+        "ClientDownloadRootFolder":"http://pantheria.ru/MineCraft/MinecraftDownload/"
 }

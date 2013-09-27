@@ -26,8 +26,8 @@ public class RunGame {
             public void run()
             {
          if(GlobalVar.isRememberUserNamePass){
-         ConfigLoaderCore cfsaver = new ConfigLoaderCore();
-         cfsaver.saveUserConfig();
+                ConfigLoaderCore cfsaver = new ConfigLoaderCore();
+                cfsaver.saveUserConfig();
          }
          Updater gup = new Updater();
          gup.Init(progressCurrent,progressBarTotal);

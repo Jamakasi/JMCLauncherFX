@@ -81,7 +81,7 @@ public class MainFormController implements Initializable {
      * Set bool state remember username and pass
      */
     public void SetCheckboxRemember(){
-        GlobalVar.isRememberUserNamePass = CheckBoxSavelogin.isSelected();
+        //GlobalVar.isRememberUserNamePass = CheckBoxSavelogin.isSelected();
     }
     /*
      * Get index from combobox with client names and loaf config info about client
@@ -122,14 +122,13 @@ public class MainFormController implements Initializable {
     }
     private void FormStageTwo()
     {
+        GlobalVar.isRememberUserNamePass = CheckBoxSavelogin.isSelected(); //Стоит ли галка о запоминании данных
         if(GlobalVar.isOnline)// is Online?
         {
             if(Utils.login(GlobalVar.userName, GlobalVar.password))//Login succes ?
             {
                MainPane.setVisible(false);
                PaneUpdater.setVisible(true);
-               //ProgressCurrent
-               //ProgressGlobal
                RunGame.Init(ProgressCurrent,ProgressGlobal); //Запускаем обновление, потом игру
             }else
             {//Ничего не делаем

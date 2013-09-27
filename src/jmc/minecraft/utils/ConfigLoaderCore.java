@@ -126,7 +126,7 @@ public void LoadClientConfig(String clientName)
                     JSONArray ZipListTemp = (JSONArray) jsonObject.get("DownloadZipList");
                     GlobalVar.ArchivesList = new String[ZipListTemp.size()];  //Init array size
                 ZipListTemp.toArray(GlobalVar.ArchivesList);  //Puts strings array
-
+                loadCurrentClientConfig(); //Доп настройки явы для текущего клиента
 	} catch (IOException e) {
 		Utils.LogPrint("Load client info config error",e.getMessage());
 	} catch (ParseException e) {
