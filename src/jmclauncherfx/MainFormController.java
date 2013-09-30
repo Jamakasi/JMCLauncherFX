@@ -21,6 +21,7 @@ import javafx.scene.control.ComboBox;
 
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -54,15 +55,27 @@ public class MainFormController implements Initializable {
     //Window two
     public ProgressBar ProgressCurrent = new ProgressBar();
     public ProgressBar ProgressGlobal;
+    public static TextArea EditFieldLog;
     
     public AnchorPane MainPane;
     public AnchorPane PaneUpdater;
+    
+    
     
     
     @FXML
     /*
      * Open registration link
      */
+    public static void PrintToLog(String text){
+        try{
+        //EditFieldLog.setText(EditFieldLog.getText()+"\n"+text);
+        EditFieldLog.appendText(text+"\n");
+        EditFieldLog.setScrollTop(Double.MAX_VALUE);
+        }catch(Exception e){
+            Utils.LogPrint(e);
+        }
+    }
     public void LabelRegistrationOpenURL(){
         try {
               Utils.openLink(new URL(GlobalVar.RegURL).toURI());
@@ -107,7 +120,7 @@ public class MainFormController implements Initializable {
                 webEngineClientInfo.loadContent(sb.toString());
             }catch(Exception e)
             {
-                webEngineClientInfo.loadContent("<html><body text=\\\"#333333\\\" bgcolor=\"\\#cccccc\\\" ><center><p><font size=\"5\">ERROR LOADING INFO</font></p></center></body></html>");
+                webEngineClientInfo.loadContent("<html><body text=\"#333333\" bgcolor=\"#cccccc\" ><center><p><font size=\"5\">ERROR LOADING INFO</font></p></center></body></html>");
             }
         }
     }
@@ -127,8 +140,8 @@ public class MainFormController implements Initializable {
         {
             if(Utils.login(GlobalVar.userName, GlobalVar.password))//Login succes ?
             {
-               MainPane.setVisible(false);
-               PaneUpdater.setVisible(true);
+               MainPane.setVisible(false);     //Скрываем основную форму
+               PaneUpdater.setVisible(true);   //Показываем форму загрузки\запуска
                RunGame.Init(ProgressCurrent,ProgressGlobal); //Запускаем обновление, потом игру
             }else
             {//Ничего не делаем
@@ -136,8 +149,14 @@ public class MainFormController implements Initializable {
             };         
         }else  //Offline, run game offline
         {
+               MainPane.setVisible(false);      //Скрываем основную форму
+               PaneUpdater.setVisible(true);    //Показываем форму загрузки\запуска
+               ProgressCurrent.setProgress(-0.1);  //Устанавливаем думалку
+               ProgressGlobal.setProgress(-0.1);    //Устанавливаем думалку
                 MCGameRuner grun = new MCGameRuner();
                 grun.LetsGame(false);
+                ProgressCurrent.setVisible(false); //Скрываем думалку т.к. игрок может и не закрыть форму
+                ProgressGlobal.setVisible(false);   //Скрываем думалку т.к. игрок может и не закрыть форму
                 //System.exit(1);
         }
     }

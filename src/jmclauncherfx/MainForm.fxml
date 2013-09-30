@@ -10,9 +10,9 @@
 
 <AnchorPane id="AnchorPane" fx:id="MainForm" maxHeight="-1.0" maxWidth="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jmclauncherfx.MainFormController">
   <children>
-    <AnchorPane fx:id="MainPane" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <AnchorPane fx:id="MainPane" prefHeight="600.0" prefWidth="800.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <WebView fx:id="WebNews" prefHeight="601.0" prefWidth="521.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="0.0" />
+        <WebView fx:id="WebNews" prefHeight="601.0" prefWidth="523.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="0.0" />
         <Pane fx:id="MainControls" maxHeight="-1.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
           <children>
             <Label fx:id="LableLogin" layoutX="14.0" layoutY="31.0" prefHeight="16.9609375" prefWidth="45.0" text="Логин:" />
@@ -31,8 +31,9 @@
     </AnchorPane>
     <AnchorPane fx:id="PaneUpdater" prefHeight="600.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <ProgressBar fx:id="ProgressCurrent" focusTraversable="false" layoutY="70.0" prefHeight="60.0" prefWidth="772.0" progress="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-        <ProgressBar fx:id="ProgressGlobal" layoutY="159.0" prefHeight="60.0" prefWidth="772.0" progress="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+        <ProgressBar fx:id="ProgressCurrent" focusTraversable="false" layoutY="30.0" prefHeight="21.0" prefWidth="772.0" progress="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+        <ProgressBar fx:id="ProgressGlobal" layoutY="66.0" prefHeight="21.0" prefWidth="772.0" progress="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+        <TextArea fx:id="EditFieldLog" editable="false" prefHeight="456.0" prefWidth="772.0" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="13.0" />
       </children>
     </AnchorPane>
   </children>

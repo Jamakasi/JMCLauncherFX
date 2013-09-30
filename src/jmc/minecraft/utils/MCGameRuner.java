@@ -20,11 +20,14 @@ private String AppDataPath = Utils.GetCurrentClientDir() + File.separator ;
 
 public void LetsGame(boolean Online)
 {
-Utils.LogPrint("gameruner", "gameroot:"+ClientFolderPath);
-Utils.LogPrint("gameruner", "gamefakeappdata:"+ClientFolderPath);
+//Utils.LogPrint("gameruner", "gameroot:"+ClientFolderPath);
+//Utils.LogPrint("gameruner", "gamefakeappdata:"+ClientFolderPath);
+Utils.LogPrintConsoleHead("Запускаю игру");
 ArrayList<String> params = new ArrayList<String>();
 
         if(GlobalVar.ExpertSettings){
+            Utils.LogPrintConsole("Использован сторонний путь до java: "+GlobalVar.JavaPath);
+            Utils.LogPrintConsole("Использован дополнительные аргументыщапуска java: "+GlobalVar.JavaVMArg);
             params.add(GlobalVar.JavaPath);
             params.add(GlobalVar.JavaVMArg);
         }else
@@ -43,7 +46,8 @@ ArrayList<String> params = new ArrayList<String>();
              }
         }else
         {
-            params.add("-Dfml.ignoreInvalidMinecraftCertificates=true");  //Игнорим сертефикаты всегда
+            params.add("-Dfml.ignoreInvalidMinecraftCertificates=true");
+            params.add("-Dfml.ignorePatchDiscrepancies=true"); 
              if(GlobalVar.newminecraftisfml){
                 params.add("net.minecraft.launchwrapper.Launch");  
                 params.add("--tweakClass");
@@ -68,7 +72,7 @@ ArrayList<String> params = new ArrayList<String>();
         }
         
         
-        File log = new File(ClientFolderPath+"game.log");
+        //File log = new File(ClientFolderPath+"game.log");
         
         ProcessBuilder pb = new ProcessBuilder(params);
         //Map<String, String> env = pb.environment();
@@ -85,12 +89,15 @@ ArrayList<String> params = new ArrayList<String>();
             pb.environment().put("user.home", AppDataPath);
         }
         pb.directory(new File(ClientFolderPath));
-        pb.redirectErrorStream(true);
-        pb.redirectOutput(log);     
+        //pb.redirectErrorStream(true);
+        //pb.redirectOutput(log);     
     try {
         pb.start();
+        Utils.LogPrintConsoleHead("Теперь лаунчер можно закрыть");
         //Process process = pb.start();
+        
     } catch (IOException ex) {
+        Utils.LogPrintConsoleHead("Произошла серьезная ошибка при запуске игры. Игра не запущена либо запущена с ошибками");
         Logger.getLogger(MCGameRuner.class.getName()).log(Level.SEVERE, null, ex);
     }
 } 

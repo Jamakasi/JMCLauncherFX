@@ -24,9 +24,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javafx.scene.control.ProgressBar;
 
-import javax.swing.JProgressBar;
-
-import static jmc.minecraft.utils.Utils.getWorkingDirectory;
 
 /**
  *
@@ -53,16 +50,16 @@ private static double CurentTotalProgress =0.0;
 
 public void Init(ProgressBar progressCurr,ProgressBar progressBarTotal)
 {
-    
+    Utils.LogPrintConsoleHead("Проверка обновления. Checking update.");
     GenerateFileList();  //1
     
-
+    Utils.LogPrintConsoleHead("Подсчет размера обновления. Checking update size.");
     DownloadFilesSize(); //2
     
-
+    Utils.LogPrintConsoleHead("Скачивание обновления. Downloading update.");
     DownloadFiles(progressCurr,progressBarTotal);     //3
     
-
+    Utils.LogPrintConsoleHead("Установка обновления. Installing update.");
     UnpackArchives(progressCurr,progressBarTotal);    //5
 }
 /*
@@ -97,6 +94,7 @@ private void GenerateFileList()
                 FileList[FileCount]=GlobalVar.ArchivesList[i];
                 URLList[FileCount] = new URL(path,FileList[FileCount]);
                 FileCount++;
+                Utils.LogPrintConsole("Обнаружено обновление файла: "+GlobalVar.ArchivesList[i]);
             } catch (MalformedURLException ex) 
             {
                 //System.out.println("Исключение на итерации "+ FileCount + "\nFile name = "+FileList[FileCount]);
@@ -104,6 +102,7 @@ private void GenerateFileList()
             } catch (Exception e)
             {
                 System.out.println("Error on generate links "+e);
+                Utils.LogPrintConsole("Ошибка проверки обновления файла: "+GlobalVar.ArchivesList[i]);
             }
           
         }
@@ -119,6 +118,7 @@ protected void DownloadFilesSize()
         long size = (Utils.downloadFilesSize(URLList[i].toString()))*2/1024;
         totalsize +=size;
         FileSize[i] = size/2;
+        Utils.LogPrintConsole("Размер обновления для файла: "+FileList[i]+" ="+FileSize[i]+"Kb");
     }
 }
 /*
@@ -129,7 +129,8 @@ protected void DownloadFiles(ProgressBar progressCurr,ProgressBar progressBarTot
     //System.out.println(FileCount);
     for(int i=0;i<FileCount;i++)
     {
-        System.out.println(i+" Качаю "+ URLList[i].toString()+"\n"+ClientFolderPath);
+        //System.out.println(i+" Качаю "+ URLList[i].toString()+"\n"+ClientFolderPath);
+        Utils.LogPrintConsole("Начинаю скачивать: "+FileList[i]);
         downloadFiles(URLList[i].toString(), ClientFolderPath,FileList[i], 65536,FileSize[i], progressCurr, progressBarTotal);
     }
 }
@@ -147,8 +148,9 @@ protected void UnpackArchives(ProgressBar progressCurr,ProgressBar progressBarTo
     {
         System.out.println(i+" Unzip "+ FileList[i]);
         try {
-                   Utils.deleteDirectory(Utils.GetCurrentClientDir()+ File.separator+".minecraft"+ File.separator+FileList[i].substring(0, FileList[i].length()-4));   //Рекурсивно вычищаем ее
-            UnZip(FileList[i],FileSize[i],progressCurr,progressBarTotal);
+                 Utils.deleteDirectory(Utils.GetCurrentClientDir()+ File.separator+".minecraft"+ File.separator+FileList[i].substring(0, FileList[i].length()-4));   //Рекурсивно вычищаем ее
+            Utils.LogPrintConsole("Начинаю установку: "+FileList[i]);
+                 UnZip(FileList[i],FileSize[i],progressCurr,progressBarTotal);
         } catch (PrivilegedActionException ex) {
             Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
         }

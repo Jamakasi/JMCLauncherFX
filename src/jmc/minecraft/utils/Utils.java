@@ -183,12 +183,14 @@ public class Utils {
         result = (con.getResponseCode() == HttpURLConnection.HTTP_OK);
     } catch (Exception e) {
         e.printStackTrace();
+        return false;
     } finally {
         if (con != null) {
             try {
                 con.disconnect();
             } catch (Exception e) {
                 e.printStackTrace();
+                return false;
             }
         }
     }
@@ -319,5 +321,15 @@ public static String GetCurrentClientDir(){
       }
 
     return FullPath;
+}
+public static void LogPrintConsole(String Message){
+    jmclauncherfx.MainFormController.PrintToLog(Message);
+}
+public static void LogPrintConsoleHead(String Message){
+    LogPrintConsole("\n######################################################################");
+    LogPrintConsole("######################################################################");
+    LogPrintConsole("################"+Message);
+    LogPrintConsole("######################################################################");
+    LogPrintConsole("######################################################################\n");
 }
 }

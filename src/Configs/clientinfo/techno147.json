@@ -2,5 +2,5 @@
     "info": "",
     "RunAsOlderMinecraft": true,
     "RunMinecraftAsFML16x": false,
-    "DownloadZipList":["bin.zip","config.zip","coremods.zip",custom.zip",Flan.zip",lib.zip",mods.zip",resources.zip"]
+    "DownloadZipList":["bin.zip","config.zip","coremods.zip","custom.zip","Flan.zip","lib.zip","mods.zip","resources.zip"]
 }

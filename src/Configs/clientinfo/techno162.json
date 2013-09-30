@@ -2,5 +2,5 @@
     "info": "",
     "RunAsOlderMinecraft": false,
     "RunMinecraftAsFML16x": true,
-    "DownloadZipList":["bin.zip","assets.zip","config.zip","mods.zip","custom.zip"]
+    "DownloadZipList":["bin.zip","assets.zip","config.zip","mods.zip","custom.zip","shaderpacks.zip"]
 }

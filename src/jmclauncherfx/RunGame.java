@@ -33,7 +33,7 @@ public class RunGame {
          gup.Init(progressCurrent,progressBarTotal);
                 MCGameRuner grun = new MCGameRuner();
                 grun.LetsGame(true);
-                System.exit(0);
+                //System.exit(0);
             }
         });
         myThready.start();
