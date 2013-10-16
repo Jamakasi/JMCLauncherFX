@@ -135,7 +135,7 @@ public void SaveJavaConfig(){
 public void CheckBoxJavaSetting(){
     if(CheckBoxJavaSetting.isSelected()){
             JOptionPane.showMessageDialog( null,
-                    "Если вы используете эти опции и у Вас перестала работать игра то это проблема кривости Ваших рук и невнимательности!\nЛаунчер не виноват что Вы не умеете пользоваться этими настройками.",
+                    "Используйте эти настройки только если точно знаете что делаете!",
                     "!!! ПРЕДУПРЕЖДЕНИЕ !!!",
                     JOptionPane.WARNING_MESSAGE);
         }else{

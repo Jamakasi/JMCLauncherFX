@@ -27,12 +27,30 @@ ArrayList<String> params = new ArrayList<String>();
 
         if(GlobalVar.ExpertSettings){
             Utils.LogPrintConsole("Использован сторонний путь до java: "+GlobalVar.JavaPath);
-            Utils.LogPrintConsole("Использован дополнительные аргументыщапуска java: "+GlobalVar.JavaVMArg);
+            Utils.LogPrintConsole("Использованы дополнительные параметры запуска java: "+GlobalVar.JavaVMArg);
             params.add(GlobalVar.JavaPath);
             params.add(GlobalVar.JavaVMArg);
         }else
         {
+            Utils.LogPrintConsole("Подбор оптимальных опций ява машины:");
             params.add("java");
+            params.add("-Xincgc");
+            Utils.LogPrintConsole("Улучшение чистки памяти -Xincgc");
+            long Ram = Runtime.getRuntime().maxMemory()/1024L/1024L;
+            if (Ram >=1000L){
+                Utils.LogPrintConsole("Возможно выделить более 1гб памяти, принудительное выставление -Xms1G");
+                params.add("-Xms1G");
+            }else{
+                if(Ram<512L){
+                    Utils.LogPrintConsole("В вашей системе слишком мало свободной памяти,");
+                    Utils.LogPrintConsole("для плавной игры рекомендуется не менее 512 мб свободной памяти. Выделено:"+Ram+"Мб");
+                    Utils.LogPrintConsole("Рекомендуется закрыть все сторонние программы или воспользоваться расширенными настройками ява машины.");
+                }
+                Utils.LogPrintConsole("-Xmx"+Ram+"m");
+                Utils.LogPrintConsole("-Xms"+Ram+"m");
+                params.add("-Xmx"+Ram+"m");
+                params.add("-Xms"+Ram+"m");
+            }
         }
         params.add("-cp");
         params.add(ClientFolderPath+"bin"+ File.separator+"*");
@@ -64,7 +82,7 @@ ArrayList<String> params = new ArrayList<String>();
                 params.add(GlobalVar.sessionId);
              }
              params.add("--version");
-             params.add("1.6.2"/*GlobalVar.Version*/);
+             params.add("1.6.2");
              params.add("--gameDir");
              params.add(ClientFolderPath);
              params.add("--assetsDir");
@@ -72,11 +90,12 @@ ArrayList<String> params = new ArrayList<String>();
         }
         
         
-        //File log = new File(ClientFolderPath+"game.log");
+        File log = new File(ClientFolderPath+"game.log");
         
         ProcessBuilder pb = new ProcessBuilder(params);
         //Map<String, String> env = pb.environment();
         pb.environment().clear();
+        System.out.println(pb.environment().toString());
         if(Utils.getPlatform()==Utils.OS.windows)
         {
             pb.environment().put("PATH", ClientFolderPath+"bin"+ File.separator+"natives");
@@ -89,12 +108,19 @@ ArrayList<String> params = new ArrayList<String>();
             pb.environment().put("user.home", AppDataPath);
         }
         pb.directory(new File(ClientFolderPath));
-        //pb.redirectErrorStream(true);
-        //pb.redirectOutput(log);     
+        pb.redirectErrorStream(true);
+        pb.redirectOutput(log);     
     try {
-        pb.start();
+        Process process =pb.start();
+        if (process == null){
+            Utils.LogPrintConsoleHead("Не удалось запустить игру =(");
+            if(GlobalVar.ExpertSettings){
+                Utils.LogPrintConsole("Вы используете расширенные настройки!");
+                Utils.LogPrintConsole("Возможно указаны неправильные параметры запуска ява машины!");
+            }else
+            Utils.LogPrintConsole("Возможно выделено неправильное количество памяти");
+        }else
         Utils.LogPrintConsoleHead("Теперь лаунчер можно закрыть");
-        //Process process = pb.start();
         
     } catch (IOException ex) {
         Utils.LogPrintConsoleHead("Произошла серьезная ошибка при запуске игры. Игра не запущена либо запущена с ошибками");
