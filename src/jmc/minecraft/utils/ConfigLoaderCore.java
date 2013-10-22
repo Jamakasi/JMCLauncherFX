@@ -106,8 +106,6 @@ JSONParser parser = new JSONParser();
                 GlobalVar.ExpertSettings = false;
 	}     
 }   
-
-
    /*
     * Load current client info
     */ 
@@ -120,9 +118,9 @@ public void LoadClientConfig(String clientName)
 		Object obj = parser.parse(new InputStreamReader(in));
 		JSONObject jsonObject = (JSONObject) obj;
  
-                GlobalVar.oldminecarft =(boolean) jsonObject.get("RunAsOlderMinecraft");
-                GlobalVar.newminecraftisfml = (boolean) jsonObject.get("RunMinecraftAsFML16x");
-                GlobalVar.clientinfo = (String) jsonObject.get("info");
+                GlobalVar.id = (String) jsonObject.get("id");
+                GlobalVar.mainClass = (String) jsonObject.get("mainClass");
+                GlobalVar.minecraftArguments = (String) jsonObject.get("minecraftArguments");
                     JSONArray ZipListTemp = (JSONArray) jsonObject.get("DownloadZipList");
                     GlobalVar.ArchivesList = new String[ZipListTemp.size()];  //Init array size
                 ZipListTemp.toArray(GlobalVar.ArchivesList);  //Puts strings array

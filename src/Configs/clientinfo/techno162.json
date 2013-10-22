@@ -1,6 +1,6 @@
 {
-    "info": "",
-    "RunAsOlderMinecraft": false,
-    "RunMinecraftAsFML16x": true,
+    "id": "1.6.2",
+	"mainClass": "net.minecraft.launchwrapper.Launch",
+	"minecraftArguments": "--username ${auth_player_name} --session ${auth_session} --version ${version_name} --gameDir ${game_directory} --assetsDir ${game_assets} --tweakClass cpw.mods.fml.common.launcher.FMLTweaker",
     "DownloadZipList":["bin.zip","assets.zip","config.zip","mods.zip","custom.zip","shaderpacks.zip"]
 }

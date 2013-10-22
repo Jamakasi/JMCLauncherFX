@@ -80,7 +80,7 @@ public static void main(String[] args) {
         
     }    
         //pb.directory(new File(ClientFolderPath));
-        pb.redirectErrorStream(true);
+        /*pb.redirectErrorStream(true);
         String logpath = new String();
         try{
             logpath =URLDecoder.decode(LauncherPreloader.class.getProtectionDomain().getCodeSource().getLocation().getPath()+".log","UTF-8");
@@ -89,7 +89,7 @@ public static void main(String[] args) {
         }
         File log = new File(logpath);
         pb.redirectErrorStream(true);
-        pb.redirectOutput(log);     
+        pb.redirectOutput(log);     */
     try {
         pb.start();
     } catch (IOException ex) {

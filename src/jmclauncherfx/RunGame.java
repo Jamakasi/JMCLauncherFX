@@ -18,29 +18,26 @@ import jmc.minecraft.utils.Updater;
  */
 public class RunGame {
    
- public static void Init(final ProgressBar progressCurrent,final ProgressBar progressBarTotal)
+public static void Init(final ProgressBar progressCurrent,final ProgressBar progressBarTotal)
  {
 
         Thread myThready = new Thread(new Runnable()
         {
             public void run()
             {
-         if(GlobalVar.isRememberUserNamePass){
+            if(GlobalVar.isRememberUserNamePass)
+            {
                 ConfigLoaderCore cfsaver = new ConfigLoaderCore();
                 cfsaver.saveUserConfig();
-         }
-         Updater gup = new Updater();
-         gup.Init(progressCurrent,progressBarTotal);
+            }
+            Updater gup = new Updater();
+            gup.Init(progressCurrent,progressBarTotal);
                 MCGameRuner grun = new MCGameRuner();
                 grun.LetsGame(true);
-                //System.exit(0);
             }
         });
         myThready.start();
          
      
  }
-
-
- 
 }

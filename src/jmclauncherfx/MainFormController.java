@@ -153,11 +153,11 @@ public class MainFormController implements Initializable {
                PaneUpdater.setVisible(true);    //Показываем форму загрузки\запуска
                ProgressCurrent.setProgress(-0.1);  //Устанавливаем думалку
                ProgressGlobal.setProgress(-0.1);    //Устанавливаем думалку
+               GlobalVar.sessionId = "000000";
                 MCGameRuner grun = new MCGameRuner();
                 grun.LetsGame(false);
                 ProgressCurrent.setVisible(false); //Скрываем думалку т.к. игрок может и не закрыть форму
                 ProgressGlobal.setVisible(false);   //Скрываем думалку т.к. игрок может и не закрыть форму
-                //System.exit(1);
         }
     }
     public void ButtonSettingsPressed(){

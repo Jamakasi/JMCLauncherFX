@@ -18,28 +18,26 @@ public class MCGameRuner {
 private String ClientFolderPath = Utils.GetCurrentClientDir() + File.separator + ".minecraft" + File.separator;
 private String AppDataPath = Utils.GetCurrentClientDir() + File.separator ;
 
-public void LetsGame(boolean Online)
-{
-//Utils.LogPrint("gameruner", "gameroot:"+ClientFolderPath);
-//Utils.LogPrint("gameruner", "gamefakeappdata:"+ClientFolderPath);
-Utils.LogPrintConsoleHead("Запускаю игру");
-ArrayList<String> params = new ArrayList<String>();
-
-        if(GlobalVar.ExpertSettings){
+protected ArrayList<String> ParseGameArguments(){
+    String sartemp[] = GlobalVar.minecraftArguments.split(" ");
+    String word = new String();
+    ArrayList<String> arltemp = new ArrayList<String>();
+    
+    if(GlobalVar.ExpertSettings){
             Utils.LogPrintConsole("Использован сторонний путь до java: "+GlobalVar.JavaPath);
             Utils.LogPrintConsole("Использованы дополнительные параметры запуска java: "+GlobalVar.JavaVMArg);
-            params.add(GlobalVar.JavaPath);
-            params.add(GlobalVar.JavaVMArg);
+            arltemp.add(GlobalVar.JavaPath);
+            arltemp.add(GlobalVar.JavaVMArg);
         }else
         {
             Utils.LogPrintConsole("Подбор оптимальных опций ява машины:");
-            params.add("java");
-            params.add("-Xincgc");
+            arltemp.add("java");
+            arltemp.add("-Xincgc");
             Utils.LogPrintConsole("Улучшение чистки памяти -Xincgc");
             long Ram = Runtime.getRuntime().maxMemory()/1024L/1024L;
             if (Ram >=1000L){
                 Utils.LogPrintConsole("Возможно выделить более 1гб памяти, принудительное выставление -Xms1G");
-                params.add("-Xms1G");
+                arltemp.add("-Xms1G");
             }else{
                 if(Ram<512L){
                     Utils.LogPrintConsole("В вашей системе слишком мало свободной памяти,");
@@ -48,54 +46,42 @@ ArrayList<String> params = new ArrayList<String>();
                 }
                 Utils.LogPrintConsole("-Xmx"+Ram+"m");
                 Utils.LogPrintConsole("-Xms"+Ram+"m");
-                params.add("-Xmx"+Ram+"m");
-                params.add("-Xms"+Ram+"m");
+                arltemp.add("-Xmx"+Ram+"m");
+                arltemp.add("-Xms"+Ram+"m");
             }
         }
-        params.add("-cp");
-        params.add(ClientFolderPath+"bin"+ File.separator+"*");
-        if(GlobalVar.oldminecarft)
-        {
-             params.add("net.minecraft.client.Minecraft");
-             params.add(GlobalVar.userName);
-             if (Online)
-             {
-                params.add(GlobalVar.sessionId);
-             }
-        }else
-        {
-            params.add("-Dfml.ignoreInvalidMinecraftCertificates=true");
-            params.add("-Dfml.ignorePatchDiscrepancies=true"); 
-             if(GlobalVar.newminecraftisfml){
-                params.add("net.minecraft.launchwrapper.Launch");  
-                params.add("--tweakClass");
-                params.add("cpw.mods.fml.common.launcher.FMLTweaker"); 
-             }else
-             {
-                params.add("net.minecraft.client.main.Main"); 
-             }
-             params.add("--username");
-             params.add(GlobalVar.userName);
-             if (Online)
-             {
-                params.add("--session");
-                params.add(GlobalVar.sessionId);
-             }
-             params.add("--version");
-             params.add("1.6.2");
-             params.add("--gameDir");
-             params.add(ClientFolderPath);
-             params.add("--assetsDir");
-             params.add(ClientFolderPath+"assets");
+        arltemp.add("-cp");
+        arltemp.add(ClientFolderPath+"bin"+ File.separator+"*");
+        arltemp.add("-Dfml.ignoreInvalidMinecraftCertificates=true");
+        arltemp.add("-Dfml.ignorePatchDiscrepancies=true");
+        arltemp.add(GlobalVar.mainClass);
+        
+    for (String s : sartemp) 
+    {  
+        switch (s){
+            case "${auth_player_name}":{  arltemp.add(GlobalVar.userName); break;}
+            case "${auth_session}":  {arltemp.add(GlobalVar.sessionId);break;}
+            case "${version_name}":  {arltemp.add(GlobalVar.id);break;}
+            case "${game_directory}":  {arltemp.add(ClientFolderPath);break;}
+            case "${game_assets}":  {arltemp.add(ClientFolderPath+"assets");break;}
+            default: {arltemp.add(s);break;}
         }
-        
-        
+    }
+    
+Utils.LogPrintConsole(arltemp.toString());
+    return arltemp;
+}
+public void LetsGame(boolean Online)
+{
+Utils.LogPrintConsoleHead("Запускаю игру");
+ArrayList<String> params = ParseGameArguments();
+
+
         File log = new File(ClientFolderPath+"game.log");
         
         ProcessBuilder pb = new ProcessBuilder(params);
-        //Map<String, String> env = pb.environment();
         pb.environment().clear();
-        System.out.println(pb.environment().toString());
+        
         if(Utils.getPlatform()==Utils.OS.windows)
         {
             pb.environment().put("PATH", ClientFolderPath+"bin"+ File.separator+"natives");
@@ -111,7 +97,7 @@ ArrayList<String> params = new ArrayList<String>();
         pb.redirectErrorStream(true);
         pb.redirectOutput(log);     
     try {
-        Process process =pb.start();
+        Process process = pb.start();
         if (process == null){
             Utils.LogPrintConsoleHead("Не удалось запустить игру =(");
             if(GlobalVar.ExpertSettings){

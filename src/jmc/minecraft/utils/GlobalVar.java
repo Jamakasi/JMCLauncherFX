@@ -43,18 +43,9 @@ public class GlobalVar {
     public static String downloadTicket;
     public static String sessionId;
     
-    public static String clientinfo;
-    public static boolean oldminecarft; //Старый метод запуска игры
-    public static boolean newminecraftisfml; //Запускать как фмл модификацию
-    public static String[] addons;
-    public static String[] addonsinfo;
-    
-    public static String Ram = "512m";
-    public static int ramindex = 3;
-    public static String RamPerm = "256m";
-    public static int ramPermindex = 3;
-    
-    public static boolean ForceUpdate = false;
+    public static String id;
+    public static String mainClass;
+    public static String minecraftArguments;
     public static boolean isOnline;
     public static boolean isRememberUserNamePass;
     public static void setCurrentServer(long num){

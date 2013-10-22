@@ -1,6 +1,6 @@
 {
-    "info": "",
-    "RunAsOlderMinecraft": false,
-    "RunMinecraftAsFML16x": false,
+    "id": "1.6.2",
+	"mainClass": "net.minecraft.client.main.Main",
+	"minecraftArguments": "--username ${auth_player_name} --session ${auth_session} --version ${version_name} --gameDir ${game_directory} --assetsDir ${game_assets}",
     "DownloadZipList":["bin.zip","assets.zip","custom.zip"]
 }
