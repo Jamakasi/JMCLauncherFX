@@ -68,7 +68,7 @@ protected ArrayList<String> ParseGameArguments(){
         }
     }
     
-Utils.LogPrintConsole(arltemp.toString());
+//Utils.LogPrintConsole(arltemp.toString());
     return arltemp;
 }
 public void LetsGame(boolean Online)
