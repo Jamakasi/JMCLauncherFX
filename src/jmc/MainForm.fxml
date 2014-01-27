@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.web.*?>
+
+<AnchorPane id="AnchorPane" fx:id="MainForm" maxHeight="-1.0" maxWidth="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jmclauncherfx.MainFormController">
+  <children>
+    <AnchorPane fx:id="MainPane" prefHeight="600.0" prefWidth="800.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <WebView fx:id="WebNews" prefHeight="601.0" prefWidth="523.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="0.0" />
+        <Pane fx:id="MainControls" maxHeight="-1.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
+          <children>
+            <Label fx:id="LableLogin" layoutX="14.0" layoutY="31.0" prefHeight="16.9609375" prefWidth="45.0" text="Логин:" />
+            <TextField fx:id="UsernameField" layoutX="66.0" layoutY="28.0" prefWidth="200.0" promptText="User name" />
+            <PasswordField fx:id="UserpassField" layoutX="66.0" layoutY="68.0" prefWidth="200.0" promptText="Password" />
+            <Button fx:id="ButtonLogin" layoutX="161.0" layoutY="135.0" mnemonicParsing="false" onAction="#ButtonRunGamePressed" prefWidth="80.0" text="Играть" />
+            <Label fx:id="LablePass" layoutX="14.0" layoutY="71.0" text="Пароль:" />
+            <Hyperlink fx:id="LinkRegistration" layoutX="70.0" layoutY="98.0" onAction="#LabelRegistrationOpenURL" text="Бесплатная регистрация" textFill="#41cc00" />
+            <Button fx:id="ButtonSetting" layoutX="161.0" layoutY="175.0" mnemonicParsing="false" onAction="#ButtonSettingsPressed" text="Настройки" />
+            <CheckBox fx:id="CheckBoxSavelogin" layoutX="31.0" layoutY="138.0" mnemonicParsing="false" onAction="#SetCheckboxRemember" selected="true" text="Запомнить" />
+            <ComboBox fx:id="ComboBoxClients" layoutX="14.0" layoutY="216.0" onAction="#SetClientIdFromCombo" prefHeight="21.0" prefWidth="251.0" />
+            <WebView fx:id="WebClientinfo" layoutX="14.0" layoutY="247.0" prefHeight="339.0" prefWidth="251.00001525878906" />
+          </children>
+        </Pane>
+      </children>
+    </AnchorPane>
+    <AnchorPane fx:id="PaneUpdater" prefHeight="600.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <ProgressBar fx:id="ProgressCurrent" focusTraversable="false" layoutY="30.0" prefHeight="21.0" prefWidth="772.0" progress="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+        <ProgressBar fx:id="ProgressGlobal" layoutY="66.0" prefHeight="21.0" prefWidth="772.0" progress="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+        <TextArea fx:id="EditFieldLog" editable="false" prefHeight="456.0" prefWidth="772.0" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="13.0" />
+      </children>
+    </AnchorPane>
+  </children>
+</AnchorPane>
